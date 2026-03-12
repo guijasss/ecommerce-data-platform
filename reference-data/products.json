@@ -1,0 +1,1002 @@
+[
+  {
+    "product_id": "PROD001",
+    "sku": "SKU-ELE-0001",
+    "name": "Electronics Item 001",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 18.75,
+    "active": true,
+    "created_at": "2025-01-01T09:30:00Z"
+  },
+  {
+    "product_id": "PROD002",
+    "sku": "SKU-FAS-0002",
+    "name": "Fashion Item 002",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 22.5,
+    "active": true,
+    "created_at": "2025-02-02T09:30:00Z"
+  },
+  {
+    "product_id": "PROD003",
+    "sku": "SKU-HOM-0003",
+    "name": "Home Item 003",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 26.25,
+    "active": true,
+    "created_at": "2025-03-03T09:30:00Z"
+  },
+  {
+    "product_id": "PROD004",
+    "sku": "SKU-SPO-0004",
+    "name": "Sports Item 004",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 30.0,
+    "active": true,
+    "created_at": "2025-04-04T09:30:00Z"
+  },
+  {
+    "product_id": "PROD005",
+    "sku": "SKU-BEA-0005",
+    "name": "Beauty Item 005",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 33.75,
+    "active": true,
+    "created_at": "2025-05-05T09:30:00Z"
+  },
+  {
+    "product_id": "PROD006",
+    "sku": "SKU-ELE-0006",
+    "name": "Electronics Item 006",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 37.5,
+    "active": true,
+    "created_at": "2025-06-06T09:30:00Z"
+  },
+  {
+    "product_id": "PROD007",
+    "sku": "SKU-FAS-0007",
+    "name": "Fashion Item 007",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 41.25,
+    "active": true,
+    "created_at": "2025-07-07T09:30:00Z"
+  },
+  {
+    "product_id": "PROD008",
+    "sku": "SKU-HOM-0008",
+    "name": "Home Item 008",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 45.0,
+    "active": true,
+    "created_at": "2025-08-08T09:30:00Z"
+  },
+  {
+    "product_id": "PROD009",
+    "sku": "SKU-SPO-0009",
+    "name": "Sports Item 009",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 48.75,
+    "active": true,
+    "created_at": "2025-09-09T09:30:00Z"
+  },
+  {
+    "product_id": "PROD010",
+    "sku": "SKU-BEA-0010",
+    "name": "Beauty Item 010",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 52.5,
+    "active": true,
+    "created_at": "2025-10-10T09:30:00Z"
+  },
+  {
+    "product_id": "PROD011",
+    "sku": "SKU-ELE-0011",
+    "name": "Electronics Item 011",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 56.25,
+    "active": true,
+    "created_at": "2025-11-11T09:30:00Z"
+  },
+  {
+    "product_id": "PROD012",
+    "sku": "SKU-FAS-0012",
+    "name": "Fashion Item 012",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 60.0,
+    "active": true,
+    "created_at": "2025-12-12T09:30:00Z"
+  },
+  {
+    "product_id": "PROD013",
+    "sku": "SKU-HOM-0013",
+    "name": "Home Item 013",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 63.75,
+    "active": true,
+    "created_at": "2025-01-13T09:30:00Z"
+  },
+  {
+    "product_id": "PROD014",
+    "sku": "SKU-SPO-0014",
+    "name": "Sports Item 014",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 67.5,
+    "active": true,
+    "created_at": "2025-02-14T09:30:00Z"
+  },
+  {
+    "product_id": "PROD015",
+    "sku": "SKU-BEA-0015",
+    "name": "Beauty Item 015",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 71.25,
+    "active": true,
+    "created_at": "2025-03-15T09:30:00Z"
+  },
+  {
+    "product_id": "PROD016",
+    "sku": "SKU-ELE-0016",
+    "name": "Electronics Item 016",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 75.0,
+    "active": true,
+    "created_at": "2025-04-16T09:30:00Z"
+  },
+  {
+    "product_id": "PROD017",
+    "sku": "SKU-FAS-0017",
+    "name": "Fashion Item 017",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 78.75,
+    "active": false,
+    "created_at": "2025-05-17T09:30:00Z"
+  },
+  {
+    "product_id": "PROD018",
+    "sku": "SKU-HOM-0018",
+    "name": "Home Item 018",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 82.5,
+    "active": true,
+    "created_at": "2025-06-18T09:30:00Z"
+  },
+  {
+    "product_id": "PROD019",
+    "sku": "SKU-SPO-0019",
+    "name": "Sports Item 019",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 86.25,
+    "active": true,
+    "created_at": "2025-07-19T09:30:00Z"
+  },
+  {
+    "product_id": "PROD020",
+    "sku": "SKU-BEA-0020",
+    "name": "Beauty Item 020",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 90.0,
+    "active": true,
+    "created_at": "2025-08-20T09:30:00Z"
+  },
+  {
+    "product_id": "PROD021",
+    "sku": "SKU-ELE-0021",
+    "name": "Electronics Item 021",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 93.75,
+    "active": true,
+    "created_at": "2025-09-21T09:30:00Z"
+  },
+  {
+    "product_id": "PROD022",
+    "sku": "SKU-FAS-0022",
+    "name": "Fashion Item 022",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 97.5,
+    "active": true,
+    "created_at": "2025-10-22T09:30:00Z"
+  },
+  {
+    "product_id": "PROD023",
+    "sku": "SKU-HOM-0023",
+    "name": "Home Item 023",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 101.25,
+    "active": true,
+    "created_at": "2025-11-23T09:30:00Z"
+  },
+  {
+    "product_id": "PROD024",
+    "sku": "SKU-SPO-0024",
+    "name": "Sports Item 024",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 105.0,
+    "active": true,
+    "created_at": "2025-12-24T09:30:00Z"
+  },
+  {
+    "product_id": "PROD025",
+    "sku": "SKU-BEA-0025",
+    "name": "Beauty Item 025",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 108.75,
+    "active": true,
+    "created_at": "2025-01-25T09:30:00Z"
+  },
+  {
+    "product_id": "PROD026",
+    "sku": "SKU-ELE-0026",
+    "name": "Electronics Item 026",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 112.5,
+    "active": true,
+    "created_at": "2025-02-26T09:30:00Z"
+  },
+  {
+    "product_id": "PROD027",
+    "sku": "SKU-FAS-0027",
+    "name": "Fashion Item 027",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 116.25,
+    "active": true,
+    "created_at": "2025-03-27T09:30:00Z"
+  },
+  {
+    "product_id": "PROD028",
+    "sku": "SKU-HOM-0028",
+    "name": "Home Item 028",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 120.0,
+    "active": true,
+    "created_at": "2025-04-28T09:30:00Z"
+  },
+  {
+    "product_id": "PROD029",
+    "sku": "SKU-SPO-0029",
+    "name": "Sports Item 029",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 123.75,
+    "active": true,
+    "created_at": "2025-05-01T09:30:00Z"
+  },
+  {
+    "product_id": "PROD030",
+    "sku": "SKU-BEA-0030",
+    "name": "Beauty Item 030",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 127.5,
+    "active": true,
+    "created_at": "2025-06-02T09:30:00Z"
+  },
+  {
+    "product_id": "PROD031",
+    "sku": "SKU-ELE-0031",
+    "name": "Electronics Item 031",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 131.25,
+    "active": true,
+    "created_at": "2025-07-03T09:30:00Z"
+  },
+  {
+    "product_id": "PROD032",
+    "sku": "SKU-FAS-0032",
+    "name": "Fashion Item 032",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 135.0,
+    "active": true,
+    "created_at": "2025-08-04T09:30:00Z"
+  },
+  {
+    "product_id": "PROD033",
+    "sku": "SKU-HOM-0033",
+    "name": "Home Item 033",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 138.75,
+    "active": true,
+    "created_at": "2025-09-05T09:30:00Z"
+  },
+  {
+    "product_id": "PROD034",
+    "sku": "SKU-SPO-0034",
+    "name": "Sports Item 034",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 142.5,
+    "active": false,
+    "created_at": "2025-10-06T09:30:00Z"
+  },
+  {
+    "product_id": "PROD035",
+    "sku": "SKU-BEA-0035",
+    "name": "Beauty Item 035",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 146.25,
+    "active": true,
+    "created_at": "2025-11-07T09:30:00Z"
+  },
+  {
+    "product_id": "PROD036",
+    "sku": "SKU-ELE-0036",
+    "name": "Electronics Item 036",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 150.0,
+    "active": true,
+    "created_at": "2025-12-08T09:30:00Z"
+  },
+  {
+    "product_id": "PROD037",
+    "sku": "SKU-FAS-0037",
+    "name": "Fashion Item 037",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 153.75,
+    "active": true,
+    "created_at": "2025-01-09T09:30:00Z"
+  },
+  {
+    "product_id": "PROD038",
+    "sku": "SKU-HOM-0038",
+    "name": "Home Item 038",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 157.5,
+    "active": true,
+    "created_at": "2025-02-10T09:30:00Z"
+  },
+  {
+    "product_id": "PROD039",
+    "sku": "SKU-SPO-0039",
+    "name": "Sports Item 039",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 161.25,
+    "active": true,
+    "created_at": "2025-03-11T09:30:00Z"
+  },
+  {
+    "product_id": "PROD040",
+    "sku": "SKU-BEA-0040",
+    "name": "Beauty Item 040",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 165.0,
+    "active": true,
+    "created_at": "2025-04-12T09:30:00Z"
+  },
+  {
+    "product_id": "PROD041",
+    "sku": "SKU-ELE-0041",
+    "name": "Electronics Item 041",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 168.75,
+    "active": true,
+    "created_at": "2025-05-13T09:30:00Z"
+  },
+  {
+    "product_id": "PROD042",
+    "sku": "SKU-FAS-0042",
+    "name": "Fashion Item 042",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 172.5,
+    "active": true,
+    "created_at": "2025-06-14T09:30:00Z"
+  },
+  {
+    "product_id": "PROD043",
+    "sku": "SKU-HOM-0043",
+    "name": "Home Item 043",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 176.25,
+    "active": true,
+    "created_at": "2025-07-15T09:30:00Z"
+  },
+  {
+    "product_id": "PROD044",
+    "sku": "SKU-SPO-0044",
+    "name": "Sports Item 044",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 180.0,
+    "active": true,
+    "created_at": "2025-08-16T09:30:00Z"
+  },
+  {
+    "product_id": "PROD045",
+    "sku": "SKU-BEA-0045",
+    "name": "Beauty Item 045",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 183.75,
+    "active": true,
+    "created_at": "2025-09-17T09:30:00Z"
+  },
+  {
+    "product_id": "PROD046",
+    "sku": "SKU-ELE-0046",
+    "name": "Electronics Item 046",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 187.5,
+    "active": true,
+    "created_at": "2025-10-18T09:30:00Z"
+  },
+  {
+    "product_id": "PROD047",
+    "sku": "SKU-FAS-0047",
+    "name": "Fashion Item 047",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 191.25,
+    "active": true,
+    "created_at": "2025-11-19T09:30:00Z"
+  },
+  {
+    "product_id": "PROD048",
+    "sku": "SKU-HOM-0048",
+    "name": "Home Item 048",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 195.0,
+    "active": true,
+    "created_at": "2025-12-20T09:30:00Z"
+  },
+  {
+    "product_id": "PROD049",
+    "sku": "SKU-SPO-0049",
+    "name": "Sports Item 049",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 198.75,
+    "active": true,
+    "created_at": "2025-01-21T09:30:00Z"
+  },
+  {
+    "product_id": "PROD050",
+    "sku": "SKU-BEA-0050",
+    "name": "Beauty Item 050",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 202.5,
+    "active": true,
+    "created_at": "2025-02-22T09:30:00Z"
+  },
+  {
+    "product_id": "PROD051",
+    "sku": "SKU-ELE-0051",
+    "name": "Electronics Item 051",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 206.25,
+    "active": false,
+    "created_at": "2025-03-23T09:30:00Z"
+  },
+  {
+    "product_id": "PROD052",
+    "sku": "SKU-FAS-0052",
+    "name": "Fashion Item 052",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 210.0,
+    "active": true,
+    "created_at": "2025-04-24T09:30:00Z"
+  },
+  {
+    "product_id": "PROD053",
+    "sku": "SKU-HOM-0053",
+    "name": "Home Item 053",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 213.75,
+    "active": true,
+    "created_at": "2025-05-25T09:30:00Z"
+  },
+  {
+    "product_id": "PROD054",
+    "sku": "SKU-SPO-0054",
+    "name": "Sports Item 054",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 217.5,
+    "active": true,
+    "created_at": "2025-06-26T09:30:00Z"
+  },
+  {
+    "product_id": "PROD055",
+    "sku": "SKU-BEA-0055",
+    "name": "Beauty Item 055",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 221.25,
+    "active": true,
+    "created_at": "2025-07-27T09:30:00Z"
+  },
+  {
+    "product_id": "PROD056",
+    "sku": "SKU-ELE-0056",
+    "name": "Electronics Item 056",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 225.0,
+    "active": true,
+    "created_at": "2025-08-28T09:30:00Z"
+  },
+  {
+    "product_id": "PROD057",
+    "sku": "SKU-FAS-0057",
+    "name": "Fashion Item 057",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 228.75,
+    "active": true,
+    "created_at": "2025-09-01T09:30:00Z"
+  },
+  {
+    "product_id": "PROD058",
+    "sku": "SKU-HOM-0058",
+    "name": "Home Item 058",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 232.5,
+    "active": true,
+    "created_at": "2025-10-02T09:30:00Z"
+  },
+  {
+    "product_id": "PROD059",
+    "sku": "SKU-SPO-0059",
+    "name": "Sports Item 059",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 236.25,
+    "active": true,
+    "created_at": "2025-11-03T09:30:00Z"
+  },
+  {
+    "product_id": "PROD060",
+    "sku": "SKU-BEA-0060",
+    "name": "Beauty Item 060",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 240.0,
+    "active": true,
+    "created_at": "2025-12-04T09:30:00Z"
+  },
+  {
+    "product_id": "PROD061",
+    "sku": "SKU-ELE-0061",
+    "name": "Electronics Item 061",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 243.75,
+    "active": true,
+    "created_at": "2025-01-05T09:30:00Z"
+  },
+  {
+    "product_id": "PROD062",
+    "sku": "SKU-FAS-0062",
+    "name": "Fashion Item 062",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 247.5,
+    "active": true,
+    "created_at": "2025-02-06T09:30:00Z"
+  },
+  {
+    "product_id": "PROD063",
+    "sku": "SKU-HOM-0063",
+    "name": "Home Item 063",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 251.25,
+    "active": true,
+    "created_at": "2025-03-07T09:30:00Z"
+  },
+  {
+    "product_id": "PROD064",
+    "sku": "SKU-SPO-0064",
+    "name": "Sports Item 064",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 255.0,
+    "active": true,
+    "created_at": "2025-04-08T09:30:00Z"
+  },
+  {
+    "product_id": "PROD065",
+    "sku": "SKU-BEA-0065",
+    "name": "Beauty Item 065",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 258.75,
+    "active": true,
+    "created_at": "2025-05-09T09:30:00Z"
+  },
+  {
+    "product_id": "PROD066",
+    "sku": "SKU-ELE-0066",
+    "name": "Electronics Item 066",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 262.5,
+    "active": true,
+    "created_at": "2025-06-10T09:30:00Z"
+  },
+  {
+    "product_id": "PROD067",
+    "sku": "SKU-FAS-0067",
+    "name": "Fashion Item 067",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 266.25,
+    "active": true,
+    "created_at": "2025-07-11T09:30:00Z"
+  },
+  {
+    "product_id": "PROD068",
+    "sku": "SKU-HOM-0068",
+    "name": "Home Item 068",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 270.0,
+    "active": false,
+    "created_at": "2025-08-12T09:30:00Z"
+  },
+  {
+    "product_id": "PROD069",
+    "sku": "SKU-SPO-0069",
+    "name": "Sports Item 069",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 273.75,
+    "active": true,
+    "created_at": "2025-09-13T09:30:00Z"
+  },
+  {
+    "product_id": "PROD070",
+    "sku": "SKU-BEA-0070",
+    "name": "Beauty Item 070",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 277.5,
+    "active": true,
+    "created_at": "2025-10-14T09:30:00Z"
+  },
+  {
+    "product_id": "PROD071",
+    "sku": "SKU-ELE-0071",
+    "name": "Electronics Item 071",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 281.25,
+    "active": true,
+    "created_at": "2025-11-15T09:30:00Z"
+  },
+  {
+    "product_id": "PROD072",
+    "sku": "SKU-FAS-0072",
+    "name": "Fashion Item 072",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 285.0,
+    "active": true,
+    "created_at": "2025-12-16T09:30:00Z"
+  },
+  {
+    "product_id": "PROD073",
+    "sku": "SKU-HOM-0073",
+    "name": "Home Item 073",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 288.75,
+    "active": true,
+    "created_at": "2025-01-17T09:30:00Z"
+  },
+  {
+    "product_id": "PROD074",
+    "sku": "SKU-SPO-0074",
+    "name": "Sports Item 074",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 292.5,
+    "active": true,
+    "created_at": "2025-02-18T09:30:00Z"
+  },
+  {
+    "product_id": "PROD075",
+    "sku": "SKU-BEA-0075",
+    "name": "Beauty Item 075",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 296.25,
+    "active": true,
+    "created_at": "2025-03-19T09:30:00Z"
+  },
+  {
+    "product_id": "PROD076",
+    "sku": "SKU-ELE-0076",
+    "name": "Electronics Item 076",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 300.0,
+    "active": true,
+    "created_at": "2025-04-20T09:30:00Z"
+  },
+  {
+    "product_id": "PROD077",
+    "sku": "SKU-FAS-0077",
+    "name": "Fashion Item 077",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 303.75,
+    "active": true,
+    "created_at": "2025-05-21T09:30:00Z"
+  },
+  {
+    "product_id": "PROD078",
+    "sku": "SKU-HOM-0078",
+    "name": "Home Item 078",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 307.5,
+    "active": true,
+    "created_at": "2025-06-22T09:30:00Z"
+  },
+  {
+    "product_id": "PROD079",
+    "sku": "SKU-SPO-0079",
+    "name": "Sports Item 079",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 311.25,
+    "active": true,
+    "created_at": "2025-07-23T09:30:00Z"
+  },
+  {
+    "product_id": "PROD080",
+    "sku": "SKU-BEA-0080",
+    "name": "Beauty Item 080",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 315.0,
+    "active": true,
+    "created_at": "2025-08-24T09:30:00Z"
+  },
+  {
+    "product_id": "PROD081",
+    "sku": "SKU-ELE-0081",
+    "name": "Electronics Item 081",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 318.75,
+    "active": true,
+    "created_at": "2025-09-25T09:30:00Z"
+  },
+  {
+    "product_id": "PROD082",
+    "sku": "SKU-FAS-0082",
+    "name": "Fashion Item 082",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 322.5,
+    "active": true,
+    "created_at": "2025-10-26T09:30:00Z"
+  },
+  {
+    "product_id": "PROD083",
+    "sku": "SKU-HOM-0083",
+    "name": "Home Item 083",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 326.25,
+    "active": true,
+    "created_at": "2025-11-27T09:30:00Z"
+  },
+  {
+    "product_id": "PROD084",
+    "sku": "SKU-SPO-0084",
+    "name": "Sports Item 084",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 330.0,
+    "active": true,
+    "created_at": "2025-12-28T09:30:00Z"
+  },
+  {
+    "product_id": "PROD085",
+    "sku": "SKU-BEA-0085",
+    "name": "Beauty Item 085",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 333.75,
+    "active": false,
+    "created_at": "2025-01-01T09:30:00Z"
+  },
+  {
+    "product_id": "PROD086",
+    "sku": "SKU-ELE-0086",
+    "name": "Electronics Item 086",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 337.5,
+    "active": true,
+    "created_at": "2025-02-02T09:30:00Z"
+  },
+  {
+    "product_id": "PROD087",
+    "sku": "SKU-FAS-0087",
+    "name": "Fashion Item 087",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 341.25,
+    "active": true,
+    "created_at": "2025-03-03T09:30:00Z"
+  },
+  {
+    "product_id": "PROD088",
+    "sku": "SKU-HOM-0088",
+    "name": "Home Item 088",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 345.0,
+    "active": true,
+    "created_at": "2025-04-04T09:30:00Z"
+  },
+  {
+    "product_id": "PROD089",
+    "sku": "SKU-SPO-0089",
+    "name": "Sports Item 089",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 348.75,
+    "active": true,
+    "created_at": "2025-05-05T09:30:00Z"
+  },
+  {
+    "product_id": "PROD090",
+    "sku": "SKU-BEA-0090",
+    "name": "Beauty Item 090",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 352.5,
+    "active": true,
+    "created_at": "2025-06-06T09:30:00Z"
+  },
+  {
+    "product_id": "PROD091",
+    "sku": "SKU-ELE-0091",
+    "name": "Electronics Item 091",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 356.25,
+    "active": true,
+    "created_at": "2025-07-07T09:30:00Z"
+  },
+  {
+    "product_id": "PROD092",
+    "sku": "SKU-FAS-0092",
+    "name": "Fashion Item 092",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 360.0,
+    "active": true,
+    "created_at": "2025-08-08T09:30:00Z"
+  },
+  {
+    "product_id": "PROD093",
+    "sku": "SKU-HOM-0093",
+    "name": "Home Item 093",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 363.75,
+    "active": true,
+    "created_at": "2025-09-09T09:30:00Z"
+  },
+  {
+    "product_id": "PROD094",
+    "sku": "SKU-SPO-0094",
+    "name": "Sports Item 094",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 367.5,
+    "active": true,
+    "created_at": "2025-10-10T09:30:00Z"
+  },
+  {
+    "product_id": "PROD095",
+    "sku": "SKU-BEA-0095",
+    "name": "Beauty Item 095",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 371.25,
+    "active": true,
+    "created_at": "2025-11-11T09:30:00Z"
+  },
+  {
+    "product_id": "PROD096",
+    "sku": "SKU-ELE-0096",
+    "name": "Electronics Item 096",
+    "category": "electronics",
+    "brand": "Nexa",
+    "price": 375.0,
+    "active": true,
+    "created_at": "2025-12-12T09:30:00Z"
+  },
+  {
+    "product_id": "PROD097",
+    "sku": "SKU-FAS-0097",
+    "name": "Fashion Item 097",
+    "category": "fashion",
+    "brand": "Orbit",
+    "price": 378.75,
+    "active": true,
+    "created_at": "2025-01-13T09:30:00Z"
+  },
+  {
+    "product_id": "PROD098",
+    "sku": "SKU-HOM-0098",
+    "name": "Home Item 098",
+    "category": "home",
+    "brand": "Pulse",
+    "price": 382.5,
+    "active": true,
+    "created_at": "2025-02-14T09:30:00Z"
+  },
+  {
+    "product_id": "PROD099",
+    "sku": "SKU-SPO-0099",
+    "name": "Sports Item 099",
+    "category": "sports",
+    "brand": "Vertex",
+    "price": 386.25,
+    "active": true,
+    "created_at": "2025-03-15T09:30:00Z"
+  },
+  {
+    "product_id": "PROD100",
+    "sku": "SKU-BEA-0100",
+    "name": "Beauty Item 100",
+    "category": "beauty",
+    "brand": "Atlas",
+    "price": 390.0,
+    "active": true,
+    "created_at": "2025-04-16T09:30:00Z"
+  }
+]

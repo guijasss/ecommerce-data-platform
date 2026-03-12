@@ -1,0 +1,2 @@
+"""Synthetic ecommerce event generator."""
+

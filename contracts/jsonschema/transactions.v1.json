@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "transaction_event",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "occurred_at",
+    "customer_id",
+    "session_id",
+    "transaction_id",
+    "order_id",
+    "payment_method",
+    "status",
+    "amount",
+    "flow_id"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "const": "transaction" },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "customer_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "transaction_id": { "type": "string" },
+    "order_id": { "type": "string" },
+    "payment_method": { "type": "string" },
+    "status": { "type": "string" },
+    "amount": { "type": "number", "minimum": 0 },
+    "flow_id": { "type": "string" }
+  },
+  "additionalProperties": false
+}

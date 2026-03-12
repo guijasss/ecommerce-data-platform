@@ -1,0 +1,452 @@
+[
+  {
+    "customer_id": "CUST001",
+    "first_name": "Customer001",
+    "last_name": "Silva001",
+    "email": "customer001@example.com",
+    "country": "US",
+    "segment": "active",
+    "created_at": "2025-01-01T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST002",
+    "first_name": "Customer002",
+    "last_name": "Silva002",
+    "email": "customer002@example.com",
+    "country": "MX",
+    "segment": "vip",
+    "created_at": "2025-02-02T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST003",
+    "first_name": "Customer003",
+    "last_name": "Silva003",
+    "email": "customer003@example.com",
+    "country": "AR",
+    "segment": "churn_risk",
+    "created_at": "2025-03-03T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST004",
+    "first_name": "Customer004",
+    "last_name": "Silva004",
+    "email": "customer004@example.com",
+    "country": "CL",
+    "segment": "new",
+    "created_at": "2025-04-04T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST005",
+    "first_name": "Customer005",
+    "last_name": "Silva005",
+    "email": "customer005@example.com",
+    "country": "BR",
+    "segment": "active",
+    "created_at": "2025-05-05T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST006",
+    "first_name": "Customer006",
+    "last_name": "Silva006",
+    "email": "customer006@example.com",
+    "country": "US",
+    "segment": "vip",
+    "created_at": "2025-06-06T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST007",
+    "first_name": "Customer007",
+    "last_name": "Silva007",
+    "email": "customer007@example.com",
+    "country": "MX",
+    "segment": "churn_risk",
+    "created_at": "2025-07-07T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST008",
+    "first_name": "Customer008",
+    "last_name": "Silva008",
+    "email": "customer008@example.com",
+    "country": "AR",
+    "segment": "new",
+    "created_at": "2025-08-08T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST009",
+    "first_name": "Customer009",
+    "last_name": "Silva009",
+    "email": "customer009@example.com",
+    "country": "CL",
+    "segment": "active",
+    "created_at": "2025-09-09T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST010",
+    "first_name": "Customer010",
+    "last_name": "Silva010",
+    "email": "customer010@example.com",
+    "country": "BR",
+    "segment": "vip",
+    "created_at": "2025-10-10T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST011",
+    "first_name": "Customer011",
+    "last_name": "Silva011",
+    "email": "customer011@example.com",
+    "country": "US",
+    "segment": "churn_risk",
+    "created_at": "2025-11-11T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST012",
+    "first_name": "Customer012",
+    "last_name": "Silva012",
+    "email": "customer012@example.com",
+    "country": "MX",
+    "segment": "new",
+    "created_at": "2025-12-12T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST013",
+    "first_name": "Customer013",
+    "last_name": "Silva013",
+    "email": "customer013@example.com",
+    "country": "AR",
+    "segment": "active",
+    "created_at": "2025-01-13T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST014",
+    "first_name": "Customer014",
+    "last_name": "Silva014",
+    "email": "customer014@example.com",
+    "country": "CL",
+    "segment": "vip",
+    "created_at": "2025-02-14T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST015",
+    "first_name": "Customer015",
+    "last_name": "Silva015",
+    "email": "customer015@example.com",
+    "country": "BR",
+    "segment": "churn_risk",
+    "created_at": "2025-03-15T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST016",
+    "first_name": "Customer016",
+    "last_name": "Silva016",
+    "email": "customer016@example.com",
+    "country": "US",
+    "segment": "new",
+    "created_at": "2025-04-16T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST017",
+    "first_name": "Customer017",
+    "last_name": "Silva017",
+    "email": "customer017@example.com",
+    "country": "MX",
+    "segment": "active",
+    "created_at": "2025-05-17T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST018",
+    "first_name": "Customer018",
+    "last_name": "Silva018",
+    "email": "customer018@example.com",
+    "country": "AR",
+    "segment": "vip",
+    "created_at": "2025-06-18T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST019",
+    "first_name": "Customer019",
+    "last_name": "Silva019",
+    "email": "customer019@example.com",
+    "country": "CL",
+    "segment": "churn_risk",
+    "created_at": "2025-07-19T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST020",
+    "first_name": "Customer020",
+    "last_name": "Silva020",
+    "email": "customer020@example.com",
+    "country": "BR",
+    "segment": "new",
+    "created_at": "2025-08-20T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST021",
+    "first_name": "Customer021",
+    "last_name": "Silva021",
+    "email": "customer021@example.com",
+    "country": "US",
+    "segment": "active",
+    "created_at": "2025-09-21T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST022",
+    "first_name": "Customer022",
+    "last_name": "Silva022",
+    "email": "customer022@example.com",
+    "country": "MX",
+    "segment": "vip",
+    "created_at": "2025-10-22T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST023",
+    "first_name": "Customer023",
+    "last_name": "Silva023",
+    "email": "customer023@example.com",
+    "country": "AR",
+    "segment": "churn_risk",
+    "created_at": "2025-11-23T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST024",
+    "first_name": "Customer024",
+    "last_name": "Silva024",
+    "email": "customer024@example.com",
+    "country": "CL",
+    "segment": "new",
+    "created_at": "2025-12-24T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST025",
+    "first_name": "Customer025",
+    "last_name": "Silva025",
+    "email": "customer025@example.com",
+    "country": "BR",
+    "segment": "active",
+    "created_at": "2025-01-25T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST026",
+    "first_name": "Customer026",
+    "last_name": "Silva026",
+    "email": "customer026@example.com",
+    "country": "US",
+    "segment": "vip",
+    "created_at": "2025-02-26T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST027",
+    "first_name": "Customer027",
+    "last_name": "Silva027",
+    "email": "customer027@example.com",
+    "country": "MX",
+    "segment": "churn_risk",
+    "created_at": "2025-03-27T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST028",
+    "first_name": "Customer028",
+    "last_name": "Silva028",
+    "email": "customer028@example.com",
+    "country": "AR",
+    "segment": "new",
+    "created_at": "2025-04-28T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST029",
+    "first_name": "Customer029",
+    "last_name": "Silva029",
+    "email": "customer029@example.com",
+    "country": "CL",
+    "segment": "active",
+    "created_at": "2025-05-01T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST030",
+    "first_name": "Customer030",
+    "last_name": "Silva030",
+    "email": "customer030@example.com",
+    "country": "BR",
+    "segment": "vip",
+    "created_at": "2025-06-02T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST031",
+    "first_name": "Customer031",
+    "last_name": "Silva031",
+    "email": "customer031@example.com",
+    "country": "US",
+    "segment": "churn_risk",
+    "created_at": "2025-07-03T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST032",
+    "first_name": "Customer032",
+    "last_name": "Silva032",
+    "email": "customer032@example.com",
+    "country": "MX",
+    "segment": "new",
+    "created_at": "2025-08-04T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST033",
+    "first_name": "Customer033",
+    "last_name": "Silva033",
+    "email": "customer033@example.com",
+    "country": "AR",
+    "segment": "active",
+    "created_at": "2025-09-05T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST034",
+    "first_name": "Customer034",
+    "last_name": "Silva034",
+    "email": "customer034@example.com",
+    "country": "CL",
+    "segment": "vip",
+    "created_at": "2025-10-06T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST035",
+    "first_name": "Customer035",
+    "last_name": "Silva035",
+    "email": "customer035@example.com",
+    "country": "BR",
+    "segment": "churn_risk",
+    "created_at": "2025-11-07T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST036",
+    "first_name": "Customer036",
+    "last_name": "Silva036",
+    "email": "customer036@example.com",
+    "country": "US",
+    "segment": "new",
+    "created_at": "2025-12-08T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST037",
+    "first_name": "Customer037",
+    "last_name": "Silva037",
+    "email": "customer037@example.com",
+    "country": "MX",
+    "segment": "active",
+    "created_at": "2025-01-09T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST038",
+    "first_name": "Customer038",
+    "last_name": "Silva038",
+    "email": "customer038@example.com",
+    "country": "AR",
+    "segment": "vip",
+    "created_at": "2025-02-10T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST039",
+    "first_name": "Customer039",
+    "last_name": "Silva039",
+    "email": "customer039@example.com",
+    "country": "CL",
+    "segment": "churn_risk",
+    "created_at": "2025-03-11T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST040",
+    "first_name": "Customer040",
+    "last_name": "Silva040",
+    "email": "customer040@example.com",
+    "country": "BR",
+    "segment": "new",
+    "created_at": "2025-04-12T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST041",
+    "first_name": "Customer041",
+    "last_name": "Silva041",
+    "email": "customer041@example.com",
+    "country": "US",
+    "segment": "active",
+    "created_at": "2025-05-13T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST042",
+    "first_name": "Customer042",
+    "last_name": "Silva042",
+    "email": "customer042@example.com",
+    "country": "MX",
+    "segment": "vip",
+    "created_at": "2025-06-14T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST043",
+    "first_name": "Customer043",
+    "last_name": "Silva043",
+    "email": "customer043@example.com",
+    "country": "AR",
+    "segment": "churn_risk",
+    "created_at": "2025-07-15T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST044",
+    "first_name": "Customer044",
+    "last_name": "Silva044",
+    "email": "customer044@example.com",
+    "country": "CL",
+    "segment": "new",
+    "created_at": "2025-08-16T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST045",
+    "first_name": "Customer045",
+    "last_name": "Silva045",
+    "email": "customer045@example.com",
+    "country": "BR",
+    "segment": "active",
+    "created_at": "2025-09-17T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST046",
+    "first_name": "Customer046",
+    "last_name": "Silva046",
+    "email": "customer046@example.com",
+    "country": "US",
+    "segment": "vip",
+    "created_at": "2025-10-18T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST047",
+    "first_name": "Customer047",
+    "last_name": "Silva047",
+    "email": "customer047@example.com",
+    "country": "MX",
+    "segment": "churn_risk",
+    "created_at": "2025-11-19T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST048",
+    "first_name": "Customer048",
+    "last_name": "Silva048",
+    "email": "customer048@example.com",
+    "country": "AR",
+    "segment": "new",
+    "created_at": "2025-12-20T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST049",
+    "first_name": "Customer049",
+    "last_name": "Silva049",
+    "email": "customer049@example.com",
+    "country": "CL",
+    "segment": "active",
+    "created_at": "2025-01-21T12:00:00Z"
+  },
+  {
+    "customer_id": "CUST050",
+    "first_name": "Customer050",
+    "last_name": "Silva050",
+    "email": "customer050@example.com",
+    "country": "BR",
+    "segment": "vip",
+    "created_at": "2025-02-22T12:00:00Z"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "purchase_event",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "occurred_at",
+    "customer_id",
+    "session_id",
+    "order_id",
+    "product_id",
+    "quantity",
+    "amount",
+    "flow_id"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_type": { "const": "purchase" },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "customer_id": { "type": "string" },
+    "session_id": { "type": "string" },
+    "order_id": { "type": "string" },
+    "product_id": { "type": "string" },
+    "quantity": { "type": "integer", "minimum": 1 },
+    "amount": { "type": "number", "minimum": 0 },
+    "currency": { "type": "string" },
+    "flow_id": { "type": "string" }
+  },
+  "additionalProperties": false
+}
