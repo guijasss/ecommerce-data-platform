@@ -1,17 +1,17 @@
-from typing import TypedDict
+from typing import TypedDict, Union
 
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql.functions import current_timestamp, input_file_name
 from pyspark.sql.streaming import StreamingQuery
 from pyspark.sql.types import StructType
+from pyspark.sql.connect.streaming.readwriter import DataStreamReader, DataStreamWriter
 
 spark = SparkSession.builder.getOrCreate()
 
 DEFAULT_SCHEMA_EVOLUTION_MODE = "addNewColumns"
 
-
-StreamReadOptions = TypedDict(
-    "StreamReadOptions",
+AutoLoaderReadOptions = TypedDict(
+    "AutoLoaderReadOptions",
     {
         "cloudFiles.format": str,
         "rescuedDataColumn": str,
@@ -26,31 +26,57 @@ StreamReadOptions = TypedDict(
     total=False,
 )
 
+DeltaReadOptions = TypedDict(
+    "DeltaReadOptions",
+    {
+        "ignoreDeletes": bool,
+        "ignoreChanges": bool,
+        "skipChangeCommits": bool,
+        "maxFilesPerTrigger": int,
+        "maxBytesPerTrigger": str,
+        "startingVersion": str,
+        "startingTimestamp": str,
+    },
+    total=False,
+)
 
-class StreamWriteOptions(TypedDict, total=False):
-    output_mode: str
-    partition_by: list[str]
-    query_name: str
+
+class DeltaWriteOptions(TypedDict, total=False):
+    outputMode: str
+    partitionBy: list[str]
+    queryName: str
     mergeSchema: bool
-    extra_write_options: dict[str, str]
+    extraOptions: dict[str, str]
 
 
-def read_stream(
+def _apply_options(reader_or_writer, options: dict) -> Union[DataStreamReader, DataStreamWriter]:
+    for key, value in options.items():
+        if value is None:
+            continue
+
+        if isinstance(value, bool):
+            value = str(value).lower()
+
+        reader_or_writer = reader_or_writer.option(key, value)
+
+    return reader_or_writer
+
+
+def read_autoloader_stream(
     source_path: str,
     schema_location: str,
     schema: StructType | None = None,
     schema_evolution_mode: str = DEFAULT_SCHEMA_EVOLUTION_MODE,
-    options: StreamReadOptions | None = None,
+    options: AutoLoaderReadOptions | None = None,
 ) -> DataFrame:
     options = options or {}
-    add_ingestion_metadata = options.get("addIngestionMetadata", True)
 
     reader = (
         spark.readStream.format("cloudFiles")
         .option("cloudFiles.schemaLocation", schema_location)
     )
 
-    normalized_options = {
+    autoloader_options = {
         "cloudFiles.format": "json",
         "rescuedDataColumn": "_rescued_data",
         "cloudFiles.includeExistingFiles": True,
@@ -58,18 +84,12 @@ def read_stream(
         "cloudFiles.useNotifications": False,
         **options,
     }
+    autoloader_options.pop("addIngestionMetadata", None)
 
-    for key, value in normalized_options.items():
-        if key == "cloudFiles.schemaHints" and schema is not None:
-            continue
+    if schema is not None:
+        autoloader_options.pop("cloudFiles.schemaHints", None)
 
-        if value is None:
-            continue
-
-        if isinstance(value, bool):
-            value = str(value).lower()
-
-        reader = reader.option(key, value)
+    reader = _apply_options(reader, autoloader_options)
 
     if schema is None:
         reader = reader.option("cloudFiles.schemaEvolutionMode", schema_evolution_mode)
@@ -79,30 +99,64 @@ def read_stream(
     return reader.load(source_path)
 
 
-def write_stream(
+def read_delta_path_stream(
+    source_path: str,
+    options: DeltaReadOptions | None = None,
+) -> DataFrame:
+    reader = spark.readStream.format("delta")
+    reader = _apply_options(reader, options or {})
+    return reader.load(source_path)
+
+
+def read_delta_table_stream(
+    table_name: str,
+    options: DeltaReadOptions | None = None,
+) -> DataFrame:
+    reader = spark.readStream.format("delta")
+    reader = _apply_options(reader, options or {})
+    return reader.table(table_name)
+
+
+def _build_delta_writer(
     df: DataFrame,
-    output_path: str,
     checkpoint_location: str,
-    output_format: str = "delta",
-    options: StreamWriteOptions | None = None,
-) -> StreamingQuery:
+    options: DeltaWriteOptions | None = None,
+):
     options = options or {}
 
     writer = (
-        df.writeStream.format(output_format)
-        .outputMode(options.get("output_mode", "append"))
+        df.writeStream.format("delta")
+        .outputMode(options.get("outputMode", "append"))
         .option("checkpointLocation", checkpoint_location)
         .option("mergeSchema", str(options.get("mergeSchema", True)).lower())
         .trigger(availableNow=True)
     )
 
-    if "query_name" in options:
-        writer = writer.queryName(options["query_name"])
+    if "queryName" in options:
+        writer = writer.queryName(options["queryName"])
 
-    if "partition_by" in options:
-        writer = writer.partitionBy(*options["partition_by"])
+    if "partitionBy" in options:
+        writer = writer.partitionBy(*options["partitionBy"])
 
-    for key, value in options.get("extra_write_options", {}).items():
-        writer = writer.option(key, value)
+    writer = _apply_options(writer, options.get("extraOptions", {}))
+    return writer
 
+
+def write_delta_path_stream(
+    df: DataFrame,
+    output_path: str,
+    checkpoint_location: str,
+    options: DeltaWriteOptions | None = None,
+) -> StreamingQuery:
+    writer = _build_delta_writer(df, checkpoint_location, options)
     return writer.start(output_path)
+
+
+def write_delta_table_stream(
+    df: DataFrame,
+    table_name: str,
+    checkpoint_location: str,
+    options: DeltaWriteOptions | None = None,
+) -> StreamingQuery:
+    writer = _build_delta_writer(df, checkpoint_location, options)
+    return writer.toTable(table_name)
