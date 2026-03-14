@@ -60,9 +60,6 @@ def read_stream(
     }
 
     for key, value in normalized_options.items():
-        if key == "addIngestionMetadata":
-            continue
-
         if key == "cloudFiles.schemaHints" and schema is not None:
             continue
 
@@ -79,27 +76,20 @@ def read_stream(
     else:
         reader = reader.schema(schema)
 
-    df = reader.load(source_path)
-
-    if add_ingestion_metadata:
-        df = (
-            df.withColumn("_ingested_at", current_timestamp())
-            .withColumn("_source_file", input_file_name())
-        )
-
-    return df
+    return reader.load(source_path)
 
 
 def write_stream(
     df: DataFrame,
     output_path: str,
     checkpoint_location: str,
+    output_format: str = "delta",
     options: StreamWriteOptions | None = None,
 ) -> StreamingQuery:
     options = options or {}
 
     writer = (
-        df.writeStream.format("delta")
+        df.writeStream.format(output_format)
         .outputMode(options.get("output_mode", "append"))
         .option("checkpointLocation", checkpoint_location)
         .option("mergeSchema", str(options.get("mergeSchema", True)).lower())
