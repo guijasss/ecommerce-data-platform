@@ -1,59 +1,125 @@
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
-from typing import Any
+from dataclasses import dataclass, field
+from datetime import UTC, datetime
+from typing import Protocol
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
+from uuid import uuid4
 
-from kafka import KafkaProducer
+
+class Publisher(Protocol):
+    def publish(self, event_type: str, payload: dict[str, object]) -> None: ...
+
+    def flush(self) -> None: ...
+
+
+def _normalize_host(host: str) -> str:
+    return host.rstrip("/")
+
+
+def _normalize_volume_path(volume_path: str) -> str:
+    # Accepts a UC volume path like "/Volumes/<catalog>/<schema>/<volume>[/...]".
+    cleaned = volume_path.strip().rstrip("/")
+    if not cleaned.startswith("/Volumes/"):
+        raise ValueError("DATABRICKS_VOLUME_PATH must start with /Volumes/...")
+    return cleaned
+
+
+def _path_join(root: str, *parts: str) -> str:
+    prefix = root.rstrip("/")
+    cleaned_parts = [part.strip("/").replace("\\", "/") for part in parts if part]
+    return "/".join([prefix, *cleaned_parts])
 
 
 @dataclass
-class EventPublisher:
-    bootstrap_servers: str
-    topic_prefix: str
-    security_protocol: str = "PLAINTEXT"
-    sasl_mechanism: str | None = None
-    sasl_username: str | None = None
-    sasl_password: str | None = None
-    ssl_cafile: str | None = None
-    ssl_certfile: str | None = None
-    ssl_keyfile: str | None = None
+class _DatabricksFilesClient:
+    host: str
+    token: str
 
     def __post_init__(self) -> None:
-        producer_kwargs: dict[str, Any] = {
-            "bootstrap_servers": self.bootstrap_servers,
-            "value_serializer": lambda value: json.dumps(value).encode("utf-8"),
-            "key_serializer": lambda value: value.encode("utf-8"),
-            "security_protocol": self.security_protocol,
-        }
-        if self.security_protocol.upper() == "SASL_SSL":
-            producer_kwargs.update(
-                {
-                    "sasl_mechanism": self.sasl_mechanism,
-                    "sasl_plain_username": self.sasl_username,
-                    "sasl_plain_password": self.sasl_password,
-                    "ssl_cafile": self.ssl_cafile,
-                }
-            )
-        if self.security_protocol.upper() == "SSL":
-            producer_kwargs.update(
-                {
-                    "ssl_cafile": self.ssl_cafile,
-                    "ssl_certfile": self.ssl_certfile,
-                    "ssl_keyfile": self.ssl_keyfile,
-                }
-            )
-        self._producer = KafkaProducer(**producer_kwargs)
+        self.host = _normalize_host(self.host)
+
+    def _request_bytes(self, *, method: str, path: str, body: bytes, content_type: str) -> None:
+        url = f"{self.host}{path}"
+        req = Request(
+            url=url,
+            data=body,
+            method=method,
+            headers={
+                "Authorization": f"Bearer {self.token}",
+                "Content-Type": content_type,
+            },
+        )
+        try:
+            with urlopen(req, timeout=60) as resp:
+                resp.read()
+        except HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")
+            raise RuntimeError(f"Databricks API error {exc.code} for {path}: {detail}") from exc
+
+    def mkdirs(self, volume_path: str) -> None:
+        # Unity Catalog volumes are managed via the Files API (not DBFS API).
+        normalized = _normalize_volume_path(volume_path).lstrip("/")
+        if not normalized.endswith("/"):
+            normalized = f"{normalized}/"
+        self._request_bytes(
+            method="PUT",
+            path=f"/api/2.0/fs/directories/{normalized}",
+            body=b"",
+            content_type="application/octet-stream",
+        )
+
+    def put_file(self, *, volume_file_path: str, contents: bytes, overwrite: bool = True) -> None:
+        normalized = _normalize_volume_path(volume_file_path).lstrip("/")
+        overwrite_qs = "true" if overwrite else "false"
+        self._request_bytes(
+            method="PUT",
+            path=f"/api/2.0/fs/files/{normalized}?overwrite={overwrite_qs}",
+            body=contents,
+            content_type="application/octet-stream",
+        )
+
+
+@dataclass
+class DatabricksVolumePublisher:
+    host: str
+    token: str
+    volume_path: str
+    _client: _DatabricksFilesClient = field(init=False)
+    _buffers: dict[str, list[dict[str, object]]] = field(default_factory=dict, init=False)
+
+    def __post_init__(self) -> None:
+        self._client = _DatabricksFilesClient(host=self.host, token=self.token)
+        # `DATABRICKS_VOLUME_PATH` is treated as the write root.
+        self._dataset_root = _normalize_volume_path(self.volume_path)
 
     def publish(self, event_type: str, payload: dict[str, object]) -> None:
-        topic = f"{self.topic_prefix}.{event_type}s"
-        key = str(
-            payload.get("session_id")
-            or payload.get("order_id")
-            or payload.get("transaction_id")
-            or payload.get("event_id", event_type)
-        )
-        self._producer.send(topic, key=key, value=payload)
+        self._buffers.setdefault(event_type, []).append(payload)
 
     def flush(self) -> None:
-        self._producer.flush()
+        if not self._buffers:
+            return
+
+        ingest_date = datetime.now(UTC).date().isoformat()
+        batch_id = uuid4().hex
+        written: list[str] = []
+
+        for event_type, events in list(self._buffers.items()):
+            if not events:
+                continue
+            dataset_dir = _path_join(self._dataset_root, f"{event_type}s", f"ingest_date={ingest_date}")
+            self._client.mkdirs(dataset_dir)
+            filename = f"events-{datetime.now(UTC).strftime('%Y%m%dT%H%M%S%fZ')}-{batch_id}.jsonl"
+            file_path = _path_join(dataset_dir, filename)
+            contents = (
+                "\n".join(json.dumps(event, ensure_ascii=True, separators=(",", ":")) for event in events) + "\n"
+            ).encode("utf-8")
+            self._client.put_file(volume_file_path=file_path, contents=contents, overwrite=True)
+            written.append(file_path)
+
+        self._buffers.clear()
+
+        # Minimal signal for logs without leaking credentials.
+        print(f"wrote {len(written)} files to {self._dataset_root}/... (volume paths)")

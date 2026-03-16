@@ -10,4 +10,4 @@ COPY reference-data /app/reference-data
 
 ENV PYTHONPATH=/app
 
-CMD ["python", "-m", "event_generator.main", "--bootstrap-servers", "kafka:29092", "--flows", "100", "--interval-ms", "500"]
+CMD ["python", "-m", "event_generator.main", "--flows", "0", "--interval-ms", "500"]
