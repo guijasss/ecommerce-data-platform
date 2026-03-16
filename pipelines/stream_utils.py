@@ -8,14 +8,16 @@ DEFAULT_SCHEMA_EVOLUTION_MODE = "addNewColumns"
 
 
 def read_autoloader_stream(
-    source_path: str,
-    schema_location: str,
+    stream_entity: str,
     file_format: str = "json",
     schema: StructType | None = None,
     schema_evolution_mode: str = DEFAULT_SCHEMA_EVOLUTION_MODE,
     include_existing_files: bool = True,
     rescued_data_column: str = "_rescued_data",
 ) -> DataFrame:
+    schema_location = f"/Volumes/main/bronze/ecommerce/_schemas/{stream_entity}"
+    source_path = f"/Volumes/main/bronze/ecommerce/{stream_entity}"
+
     reader = (
         spark.readStream.format("cloudFiles")
         .option("cloudFiles.format", file_format)
