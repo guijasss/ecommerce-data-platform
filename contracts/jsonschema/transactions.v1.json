@@ -6,6 +6,7 @@
     "event_id",
     "event_type",
     "occurred_at",
+    "generator_instance_id",
     "customer_id",
     "session_id",
     "transaction_id",
@@ -19,6 +20,8 @@
     "event_id": { "type": "string" },
     "event_type": { "const": "transaction" },
     "occurred_at": { "type": "string", "format": "date-time" },
+    "generator_instance_id": { "type": "string" },
+
     "customer_id": { "type": "string" },
     "session_id": { "type": "string" },
     "transaction_id": { "type": "string" },
@@ -30,3 +33,4 @@
   },
   "additionalProperties": false
 }
+

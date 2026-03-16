@@ -6,6 +6,7 @@
     "event_id",
     "event_type",
     "occurred_at",
+    "generator_instance_id",
     "customer_id",
     "session_id",
     "order_id",
@@ -18,14 +19,42 @@
     "event_id": { "type": "string" },
     "event_type": { "const": "purchase" },
     "occurred_at": { "type": "string", "format": "date-time" },
+    "generator_instance_id": { "type": "string" },
+
     "customer_id": { "type": "string" },
+    "customer_country": { "type": "string" },
+    "customer_segment": { "type": "string" },
+
     "session_id": { "type": "string" },
     "order_id": { "type": "string" },
+
     "product_id": { "type": "string" },
+    "product_sku": { "type": "string" },
+    "product_category": { "type": "string" },
+    "product_brand": { "type": "string" },
+
     "quantity": { "type": "integer", "minimum": 1 },
+    "unit_price": { "type": "number", "minimum": 0 },
     "amount": { "type": "number", "minimum": 0 },
+    "discount_amount": { "type": "number", "minimum": 0 },
+    "discount_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+    "coupon_code": { "type": "string" },
     "currency": { "type": "string" },
-    "flow_id": { "type": "string" }
+
+    "order_total_amount": { "type": "number", "minimum": 0 },
+    "order_item_count": { "type": "integer", "minimum": 1 },
+    "order_item_index": { "type": "integer", "minimum": 1 },
+
+    "flow_id": { "type": "string" },
+
+    "channel": { "type": "string" },
+    "campaign_id": { "type": "string" },
+    "source_medium": { "type": "string" },
+    "device_type": { "type": "string" },
+
+    "is_first_purchase": { "type": "boolean" },
+    "cross_sell_source": { "type": "string" }
   },
   "additionalProperties": false
 }
+

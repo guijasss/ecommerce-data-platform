@@ -6,9 +6,9 @@
     "event_id",
     "event_type",
     "occurred_at",
+    "generator_instance_id",
     "customer_id",
     "session_id",
-    "product_id",
     "page",
     "action",
     "flow_id"
@@ -17,13 +17,53 @@
     "event_id": { "type": "string" },
     "event_type": { "const": "click" },
     "occurred_at": { "type": "string", "format": "date-time" },
+    "generator_instance_id": { "type": "string" },
     "customer_id": { "type": "string" },
+    "customer_country": { "type": "string" },
+    "customer_segment": { "type": "string" },
     "session_id": { "type": "string" },
-    "product_id": { "type": "string" },
+    "product_id": { "type": ["string", "null"] },
     "page": { "type": "string" },
     "action": { "type": "string" },
     "flow_id": { "type": "string" },
-    "source": { "type": "string" }
+    "source": { "type": "string" },
+    "channel": { "type": "string" },
+    "campaign_id": { "type": "string" },
+    "source_medium": { "type": "string" },
+    "referrer": { "type": "string" },
+
+    "device_type": { "type": "string" },
+    "os": { "type": "string" },
+    "app_version": { "type": "string" },
+    "locale": { "type": "string" },
+    "is_logged_in": { "type": "boolean" },
+
+    "experiment_id": { "type": "string" },
+    "experiment_variant": { "type": "string" },
+
+    "journey_step": { "type": "string" },
+    "onboarding_step": { "type": "string" },
+
+    "component_id": { "type": "string" },
+    "component_type": { "type": "string" },
+    "event_position": { "type": "integer", "minimum": 0 },
+
+    "search_query": { "type": "string" },
+    "search_filters": { "type": "object", "additionalProperties": true },
+    "sort_order": { "type": "string" },
+
+    "recommendation_model": { "type": "string" },
+    "recommendation_source": { "type": "string" },
+    "recommendation_request_id": { "type": "string" },
+    "recommendation_rank": { "type": "integer", "minimum": 1 },
+    "seed_product_id": { "type": ["string", "null"] },
+
+    "page_load_time_ms": { "type": "integer", "minimum": 0 },
+    "component_load_time_ms": { "type": "integer", "minimum": 0 },
+    "time_on_previous_page_ms": { "type": "integer", "minimum": 0 },
+    "session_elapsed_ms": { "type": "integer", "minimum": 0 },
+    "scroll_depth_pct": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "product_impression_count": { "type": "integer", "minimum": 0 }
   },
   "additionalProperties": false
 }
