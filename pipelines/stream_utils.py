@@ -7,6 +7,58 @@ spark = SparkSession.builder.getOrCreate()
 DEFAULT_SCHEMA_EVOLUTION_MODE = "addNewColumns"
 
 
+def _try_get_dbutils():
+    # Databricks notebooks/runtime usually has DBUtils available; keep this optional for local linting/imports.
+    try:
+        from pyspark.dbutils import DBUtils  # type: ignore
+
+        return DBUtils(spark)
+    except Exception:
+        return None
+
+
+def reset_stream_target(
+    *,
+    table_name: str | None = None,
+    output_path: str | None = None,
+    checkpoint_location: str | None = None,
+    extra_paths: list[str] | None = None,
+) -> None:
+    """
+    Reset only the *target* side of a streaming pipeline.
+
+    Typical usage before a full reprocess:
+    - Drop target table (if any)
+    - Remove checkpoint (required so the stream reads everything again)
+    - Remove target data path (so the writer recreates from scratch)
+
+    Notes:
+    - This intentionally does NOT touch the source (raw/bronze) paths or Auto Loader schemaLocation.
+    - Requires Databricks runtime for fs deletion; outside Databricks it becomes a no-op for paths.
+    """
+    if table_name:
+        spark.sql(f"DROP TABLE IF EXISTS {table_name}")
+
+    dbutils = _try_get_dbutils()
+    if not dbutils:
+        return
+
+    paths: list[str] = []
+    if checkpoint_location:
+        paths.append(checkpoint_location)
+    if output_path:
+        paths.append(output_path)
+    if extra_paths:
+        paths.extend([p for p in extra_paths if p])
+
+    for p in paths:
+        try:
+            dbutils.fs.rm(p, True)
+        except Exception:
+            # Best-effort: path may not exist or user may not have permissions.
+            pass
+
+
 def read_autoloader_stream(
     stream_entity: str,
     file_format: str = "json",
@@ -49,6 +101,7 @@ def _build_delta_writer(
     partition_by: list[str] | None = None,
     query_name: str | None = None,
     merge_schema: bool = True,
+    output_path: str | None = None,
 ):
     writer = (
         df.writeStream.format("delta")
@@ -57,6 +110,10 @@ def _build_delta_writer(
         .option("mergeSchema", str(merge_schema).lower())
         .trigger(availableNow=True)
     )
+
+    if output_path:
+        # If the target table doesn't exist yet, this allows creation at a specific UC Volume path.
+        writer = writer.option("path", output_path)
 
     if query_name:
         writer = writer.queryName(query_name)
@@ -91,6 +148,7 @@ def write_delta_table_stream(
     df: DataFrame,
     table_name: str,
     checkpoint_location: str,
+    output_path: str | None = None,
     output_mode: str = "append",
     partition_by: list[str] | None = None,
     query_name: str | None = None,
@@ -103,5 +161,6 @@ def write_delta_table_stream(
         partition_by=partition_by,
         query_name=query_name,
         merge_schema=merge_schema,
+        output_path=output_path,
     )
     return writer.toTable(table_name)

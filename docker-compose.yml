@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: apps/event_generator/Dockerfile
+    volumes:
+      - ./apps/event_generator:/app/event_generator
+      - ./reference-data:/app/reference-data
     environment:
       PYTHONUNBUFFERED: "1"
       DATABRICKS_HOST: ${DATABRICKS_HOST:-}
@@ -20,4 +23,3 @@ services:
         "--purchase-probability",
         "0.35"
       ]
-
