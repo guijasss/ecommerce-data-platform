@@ -1,3 +1,5 @@
+from typing import Any
+
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql.streaming import StreamingQuery
 from pyspark.sql.types import StructType
@@ -57,6 +59,22 @@ def reset_stream_target(
         except Exception:
             # Best-effort: path may not exist or user may not have permissions.
             pass
+
+
+def get_stream_dataframe(df: DataFrame, dbutils: Any) -> DataFrame:
+    tmp_checkpoint_location = "/Volumes/main/tmp/checkpoints/autoloader_preview"
+    dbutils.fs.rm(tmp_checkpoint_location, recurse=True)
+
+    (
+        df.writeStream
+        .format("memory")
+        .queryName("autoloader_preview")
+        .option("checkpointLocation", tmp_checkpoint_location)
+        .trigger(availableNow=True)
+        .start()
+    )
+
+    return spark.table("autoloader_preview")
 
 
 def read_autoloader_stream(
