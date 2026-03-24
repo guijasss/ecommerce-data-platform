@@ -63,6 +63,7 @@ def reset_stream_target(
 
 def get_stream_dataframe(df: DataFrame, dbutils: Any) -> DataFrame:
     tmp_checkpoint_location = "/Volumes/main/tmp/checkpoints/autoloader_preview"
+    query_name = "autoloader_preview"
 
     # If the preview query name is reused across notebook runs, make sure no previous query is still active.
     for q in list(spark.streams.active):
@@ -90,7 +91,7 @@ def get_stream_dataframe(df: DataFrame, dbutils: Any) -> DataFrame:
     query = (
         df.writeStream
         .format("memory")
-        .queryName("autoloader_preview")
+        .queryName(query_name)
         .option("checkpointLocation", tmp_checkpoint_location)
         .trigger(availableNow=True)
         .start()
@@ -99,7 +100,7 @@ def get_stream_dataframe(df: DataFrame, dbutils: Any) -> DataFrame:
     # Without awaiting, the table can be read before the stream has processed files, yielding an empty preview.
     query.awaitTermination()
 
-    return spark.table("autoloader_preview")
+    return query_name
 
 
 def read_autoloader_stream(
