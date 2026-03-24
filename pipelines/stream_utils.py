@@ -63,9 +63,31 @@ def reset_stream_target(
 
 def get_stream_dataframe(df: DataFrame, dbutils: Any) -> DataFrame:
     tmp_checkpoint_location = "/Volumes/main/tmp/checkpoints/autoloader_preview"
-    dbutils.fs.rm(tmp_checkpoint_location, recurse=True)
 
-    (
+    # If the preview query name is reused across notebook runs, make sure no previous query is still active.
+    for q in list(spark.streams.active):
+        try:
+            if getattr(q, "name", None) == "autoloader_preview":
+                q.stop()
+        except Exception:
+            pass
+
+    # Drop the temp view created by the memory sink (if any) so a stale empty preview doesn't linger.
+    try:
+        spark.catalog.dropTempView("autoloader_preview")
+    except Exception:
+        pass
+
+    # Best-effort cleanup so the preview re-reads everything and doesn't get stuck on an old checkpoint.
+    try:
+        # Some DBUtils builds accept the keyword argument, others only support positional.
+        dbutils.fs.rm(tmp_checkpoint_location, recurse=True)
+    except TypeError:
+        dbutils.fs.rm(tmp_checkpoint_location, True)
+    except Exception:
+        pass
+
+    query = (
         df.writeStream
         .format("memory")
         .queryName("autoloader_preview")
@@ -73,6 +95,9 @@ def get_stream_dataframe(df: DataFrame, dbutils: Any) -> DataFrame:
         .trigger(availableNow=True)
         .start()
     )
+
+    # Without awaiting, the table can be read before the stream has processed files, yielding an empty preview.
+    query.awaitTermination()
 
     return spark.table("autoloader_preview")
 
