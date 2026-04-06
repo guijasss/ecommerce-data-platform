@@ -8,10 +8,18 @@ from itertools import count
 from .config import Settings
 from .generator import generate_flow
 from .publisher import DatabricksVolumePublisher
+from .static_data import (
+    generate_dim_campaigns,
+    generate_dim_customers,
+    generate_dim_products,
+    generate_dim_warehouses,
+    generate_inventory_snapshot,
+)
 
 
 def parse_args() -> Settings:
     parser = argparse.ArgumentParser(description="Synthetic ecommerce event generator")
+    parser.add_argument("--mode", choices=("events", "static"), default="events")
     parser.add_argument("--flows", type=int, default=0, help="Number of flows to emit. Use 0 to run continuously.")
     parser.add_argument("--interval-ms", type=int, default=500)
     parser.add_argument("--purchase-probability", type=float, default=0.35)
@@ -29,6 +37,7 @@ def parse_args() -> Settings:
     return Settings(
         flows=args.flows,
         interval_ms=args.interval_ms,
+        mode=args.mode,
         purchase_probability=args.purchase_probability,
         databricks_host=args.databricks_host,
         databricks_token=args.databricks_token,
@@ -44,6 +53,19 @@ def main() -> None:
         token=settings.databricks_token,
         volume_path=settings.databricks_volume_path,
     )
+
+    if settings.mode == "static":
+        datasets = {
+            "customers": generate_dim_customers(),
+            "products": generate_dim_products(),
+            "campaigns": generate_dim_campaigns(),
+            "warehouses": generate_dim_warehouses(),
+            "inventory": generate_inventory_snapshot(),
+        }
+        for dataset_name, records in datasets.items():
+            path = publisher.publish_records(dataset_name=dataset_name, records=records)
+            print(f"published {len(records)} records to {path}")
+        return
 
     total_label = "continuous" if settings.flows == 0 else str(settings.flows)
 

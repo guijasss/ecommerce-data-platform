@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fact_event_raw",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_ts",
+    "event_type",
+    "session_id",
+    "device_type",
+    "platform",
+    "referrer",
+    "currency",
+    "attributes"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_ts": { "type": "string", "format": "date-time" },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "session_started",
+        "page_view",
+        "product_view",
+        "search_performed",
+        "add_to_cart",
+        "remove_from_cart",
+        "checkout_started",
+        "payment_attempted",
+        "payment_succeeded",
+        "payment_failed",
+        "order_placed",
+        "order_cancelled",
+        "shipment_created",
+        "shipment_delivered",
+        "return_requested",
+        "return_completed",
+        "support_ticket_created"
+      ]
+    },
+    "session_id": { "type": "string" },
+    "customer_id": { "type": ["string", "null"] },
+    "product_id": { "type": ["string", "null"] },
+    "cart_id": { "type": ["string", "null"] },
+    "order_id": { "type": ["string", "null"] },
+    "campaign_id": { "type": ["string", "null"] },
+    "device_type": { "type": "string" },
+    "platform": { "type": "string" },
+    "page_type": { "type": ["string", "null"] },
+    "referrer": { "type": "string" },
+    "quantity": { "type": ["integer", "null"], "minimum": 1 },
+    "unit_price": { "type": ["number", "null"], "minimum": 0 },
+    "currency": { "type": "string" },
+    "attributes": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false
+}
