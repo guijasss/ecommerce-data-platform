@@ -1,0 +1,62 @@
+[
+  {
+    "campaign_id": "CMP-001",
+    "channel": "paid_search",
+    "source": "google",
+    "medium": "cpc",
+    "campaign_name": "Paid Search Push 2026-04",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-30",
+    "daily_budget": 775.0
+  },
+  {
+    "campaign_id": "CMP-002",
+    "channel": "paid_social",
+    "source": "meta",
+    "medium": "paid_social",
+    "campaign_name": "Paid Social Push 2026-04",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-30",
+    "daily_budget": 1050.0
+  },
+  {
+    "campaign_id": "CMP-003",
+    "channel": "email",
+    "source": "crm",
+    "medium": "email",
+    "campaign_name": "Email Push 2026-04",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-30",
+    "daily_budget": 1325.0
+  },
+  {
+    "campaign_id": "CMP-004",
+    "channel": "affiliate",
+    "source": "impact",
+    "medium": "affiliate",
+    "campaign_name": "Affiliate Push 2026-04",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-30",
+    "daily_budget": 1600.0
+  },
+  {
+    "campaign_id": "CMP-005",
+    "channel": "organic",
+    "source": "seo",
+    "medium": "organic",
+    "campaign_name": "Organic Push 2026-04",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-30",
+    "daily_budget": 1875.0
+  },
+  {
+    "campaign_id": "CMP-006",
+    "channel": "direct",
+    "source": "brand",
+    "medium": "(none)",
+    "campaign_name": "Direct Push 2026-04",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-30",
+    "daily_budget": 2150.0
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-001",
+    "product_id": "PROD001",
+    "on_hand_qty": 122,
+    "reserved_qty": 18,
+    "available_qty": 104
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-001",
+    "product_id": "PROD002",
+    "on_hand_qty": 88,
+    "reserved_qty": 7,
+    "available_qty": 81
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-001",
+    "product_id": "PROD003",
+    "on_hand_qty": 64,
+    "reserved_qty": 9,
+    "available_qty": 55
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-001",
+    "product_id": "PROD004",
+    "on_hand_qty": 141,
+    "reserved_qty": 16,
+    "available_qty": 125
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-002",
+    "product_id": "PROD001",
+    "on_hand_qty": 97,
+    "reserved_qty": 11,
+    "available_qty": 86
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-002",
+    "product_id": "PROD002",
+    "on_hand_qty": 153,
+    "reserved_qty": 24,
+    "available_qty": 129
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-002",
+    "product_id": "PROD003",
+    "on_hand_qty": 71,
+    "reserved_qty": 5,
+    "available_qty": 66
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-002",
+    "product_id": "PROD004",
+    "on_hand_qty": 112,
+    "reserved_qty": 13,
+    "available_qty": 99
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-003",
+    "product_id": "PROD001",
+    "on_hand_qty": 84,
+    "reserved_qty": 6,
+    "available_qty": 78
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-003",
+    "product_id": "PROD002",
+    "on_hand_qty": 118,
+    "reserved_qty": 19,
+    "available_qty": 99
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-003",
+    "product_id": "PROD003",
+    "on_hand_qty": 137,
+    "reserved_qty": 17,
+    "available_qty": 120
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-003",
+    "product_id": "PROD004",
+    "on_hand_qty": 59,
+    "reserved_qty": 4,
+    "available_qty": 55
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-004",
+    "product_id": "PROD001",
+    "on_hand_qty": 165,
+    "reserved_qty": 27,
+    "available_qty": 138
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-004",
+    "product_id": "PROD002",
+    "on_hand_qty": 109,
+    "reserved_qty": 14,
+    "available_qty": 95
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-004",
+    "product_id": "PROD003",
+    "on_hand_qty": 93,
+    "reserved_qty": 12,
+    "available_qty": 81
+  },
+  {
+    "snapshot_ts": "2026-04-01T00:00:00+00:00",
+    "warehouse_id": "WH-004",
+    "product_id": "PROD004",
+    "on_hand_qty": 126,
+    "reserved_qty": 15,
+    "available_qty": 111
+  }
+]

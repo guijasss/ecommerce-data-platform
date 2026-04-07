@@ -9,6 +9,8 @@ from itertools import count
 from pathlib import Path
 from uuid import uuid4
 
+from apps.event_generator.static_data import generate_dim_campaigns, generate_dim_warehouses
+
 PACKAGE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = PACKAGE_DIR.parent if (PACKAGE_DIR.parent / "reference-data").exists() else PACKAGE_DIR.parents[1]
 REFERENCE_DATA_DIR = ROOT_DIR / "reference-data"
@@ -21,6 +23,9 @@ with (REFERENCE_DATA_DIR / "products.json").open(encoding="utf-8") as product_fi
     PRODUCTS: list[dict[str, object]] = json.load(product_file)
 
 ACTIVE_PRODUCTS = [product for product in PRODUCTS if product.get("active")]
+CAMPAIGNS = generate_dim_campaigns()
+CAMPAIGNS_BY_CHANNEL = {str(campaign["channel"]): campaign for campaign in CAMPAIGNS}
+WAREHOUSES = generate_dim_warehouses()
 
 EVENT_SEQUENCE = count(1)
 SESSION_SEQUENCE = count(1)
@@ -111,10 +116,12 @@ def _pick_related_product(anchor: dict[str, object]) -> dict[str, object]:
     return _pick_product()
 
 
-def _campaign_id_for_channel(channel: str) -> str | None:
-    if channel not in {"paid_search", "paid_social", "email", "affiliate"}:
-        return None
-    return f"CMP-{channel[:3].upper()}-{random.randint(1000, 9999)}"
+def _campaign_for_channel(channel: str) -> dict[str, object] | None:
+    return CAMPAIGNS_BY_CHANNEL.get(channel)
+
+
+def _pick_warehouse() -> dict[str, object]:
+    return random.choice(WAREHOUSES)
 
 
 def _session_context(customer: dict[str, object]) -> dict[str, object]:
@@ -122,18 +129,18 @@ def _session_context(customer: dict[str, object]) -> dict[str, object]:
     device_type = random.choices(DEVICE_TYPES, weights=(0.35, 0.5, 0.15), k=1)[0]
     platform = random.choice(PLATFORMS_BY_DEVICE[device_type])
     channel = random.choices(CHANNELS, weights=CHANNEL_WEIGHTS.get(segment, CHANNEL_WEIGHTS["active"]), k=1)[0]
+    campaign = _campaign_for_channel(channel)
     source, medium = CHANNEL_SOURCES[channel]
-    campaign_id = _campaign_id_for_channel(channel)
     referrer = random.choice(CHANNEL_REFERRERS[channel])
     return {
         "segment": segment,
         "device_type": device_type,
         "platform": platform,
         "channel": channel,
-        "campaign_id": campaign_id,
+        "campaign_id": None if campaign is None else str(campaign["campaign_id"]),
         "referrer": referrer,
-        "source": source,
-        "medium": medium,
+        "source": source if campaign is None else str(campaign["source"]),
+        "medium": medium if campaign is None else str(campaign["medium"]),
     }
 
 
@@ -147,6 +154,7 @@ def _base_payload(
     cart_id: str | None,
     order_id: str | None,
     campaign_id: str | None,
+    warehouse_id: str | None,
     device_type: str,
     platform: str,
     page_type: str | None,
@@ -166,6 +174,7 @@ def _base_payload(
         "cart_id": cart_id,
         "order_id": order_id,
         "campaign_id": campaign_id,
+        "warehouse_id": warehouse_id,
         "device_type": device_type,
         "platform": platform,
         "page_type": page_type,
@@ -188,6 +197,7 @@ def _event(
     product_id: str | None = None,
     cart_id: str | None = None,
     order_id: str | None = None,
+    warehouse_id: str | None = None,
     page_type: str | None = None,
     quantity: int | None = None,
     unit_price: float | None = None,
@@ -202,6 +212,7 @@ def _event(
         cart_id=cart_id,
         order_id=order_id,
         campaign_id=session_ctx.get("campaign_id"),
+        warehouse_id=warehouse_id,
         device_type=str(session_ctx["device_type"]),
         platform=str(session_ctx["platform"]),
         page_type=page_type,
@@ -533,7 +544,7 @@ def generate_flow(*, purchase_probability: float = 0.35) -> list[EventRecord]:
     net_before_tax = max(0.0, cart_value - discount_amount)
     tax_amount = round(net_before_tax * 0.08, 2)
     net_amount = round(net_before_tax + shipping_amount + tax_amount, 2)
-    warehouse_id = f"WH-{random.randint(1, 4):03d}"
+    warehouse_id = str(_pick_warehouse()["warehouse_id"])
 
     event_ts = _next_ts(event_ts, min_seconds=1, max_seconds=6)
     records.append(
@@ -545,6 +556,7 @@ def generate_flow(*, purchase_probability: float = 0.35) -> list[EventRecord]:
             customer_id=customer_id,
             cart_id=cart_id,
             order_id=order_id,
+            warehouse_id=warehouse_id,
             page_type="checkout",
             attributes={
                 "flow_id": flow_id,
@@ -604,6 +616,7 @@ def generate_flow(*, purchase_probability: float = 0.35) -> list[EventRecord]:
             session_ctx=session_ctx,
             customer_id=customer_id,
             order_id=order_id,
+            warehouse_id=warehouse_id,
             page_type=None,
             attributes={
                 "flow_id": flow_id,
@@ -624,6 +637,7 @@ def generate_flow(*, purchase_probability: float = 0.35) -> list[EventRecord]:
             session_ctx=session_ctx,
             customer_id=customer_id,
             order_id=order_id,
+            warehouse_id=warehouse_id,
             page_type=None,
             attributes={
                 "flow_id": flow_id,

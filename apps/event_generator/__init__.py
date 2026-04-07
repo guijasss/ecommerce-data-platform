@@ -1,7 +1,7 @@
 """Synthetic ecommerce data generators."""
 
-from .generator import EventRecord, generate_flow
-from .static_data import (
+from apps.event_generator.generator import EventRecord, generate_flow
+from apps.event_generator.static_data import (
     generate_dim_campaigns,
     generate_dim_customers,
     generate_dim_products,

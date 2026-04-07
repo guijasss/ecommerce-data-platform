@@ -1,0 +1,22 @@
+[
+  {
+    "warehouse_id": "WH-001",
+    "warehouse_name": "North America East",
+    "region": "na_east"
+  },
+  {
+    "warehouse_id": "WH-002",
+    "warehouse_name": "North America West",
+    "region": "na_west"
+  },
+  {
+    "warehouse_id": "WH-003",
+    "warehouse_name": "Latin America South",
+    "region": "latam_south"
+  },
+  {
+    "warehouse_id": "WH-004",
+    "warehouse_name": "Brazil Southeast",
+    "region": "br_southeast"
+  }
+]

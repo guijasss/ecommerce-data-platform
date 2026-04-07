@@ -33,6 +33,13 @@ def _path_join(root: str, *parts: str) -> str:
     return "/".join([prefix, *cleaned_parts])
 
 
+def _normalize_dataset_name(name: str) -> str:
+    cleaned = name.strip().replace("\\", "/").strip("/")
+    if not cleaned:
+        raise ValueError("Dataset name cannot be empty.")
+    return cleaned
+
+
 @dataclass
 class _DatabricksFilesClient:
     host: str
@@ -88,7 +95,7 @@ class DatabricksVolumePublisher:
     token: str
     volume_path: str
     _client: _DatabricksFilesClient = field(init=False)
-    _buffers: list[dict[str, object]] = field(default_factory=list, init=False)
+    _buffers: dict[str, list[dict[str, object]]] = field(default_factory=dict, init=False)
 
     def __post_init__(self) -> None:
         self._client = _DatabricksFilesClient(host=self.host, token=self.token)
@@ -96,7 +103,8 @@ class DatabricksVolumePublisher:
         self._dataset_root = _normalize_volume_path(self.volume_path)
 
     def publish(self, event_type: str, payload: dict[str, object]) -> None:
-        self._buffers.append(payload)
+        dataset_name = _normalize_dataset_name(event_type)
+        self._buffers.setdefault(dataset_name, []).append(payload)
 
     def publish_records(self, *, dataset_name: str, records: list[dict[str, object]]) -> str:
         if not records:
@@ -121,16 +129,21 @@ class DatabricksVolumePublisher:
         now = datetime.now(UTC)
         ingest_date = now.date().isoformat()
         ingest_hour = now.strftime("%H")
-        batch_id = uuid4().hex
-        dataset_dir = _path_join(self._dataset_root, "events", f"dt={ingest_date}", f"hour={ingest_hour}")
-        self._client.mkdirs(dataset_dir)
-        filename = f"batch_{now.strftime('%Y%m%dT%H%M%S%fZ')}_{batch_id}.jsonl"
-        file_path = _path_join(dataset_dir, filename)
-        contents = (
-            "\n".join(json.dumps(event, ensure_ascii=True, separators=(",", ":")) for event in self._buffers) + "\n"
-        ).encode("utf-8")
-        self._client.put_file(volume_file_path=file_path, contents=contents, overwrite=True)
-        self._buffers.clear()
+        for dataset_name, records in self._buffers.items():
+            if not records:
+                continue
 
-        # Minimal signal for logs without leaking credentials.
-        print(f"wrote 1 file with event batch to {self._dataset_root}/events/dt={ingest_date}/hour={ingest_hour}")
+            batch_id = uuid4().hex
+            dataset_dir = _path_join(self._dataset_root, dataset_name, f"dt={ingest_date}", f"hour={ingest_hour}")
+            self._client.mkdirs(dataset_dir)
+            filename = f"batch_{now.strftime('%Y%m%dT%H%M%S%fZ')}_{batch_id}.jsonl"
+            file_path = _path_join(dataset_dir, filename)
+            contents = (
+                "\n".join(json.dumps(event, ensure_ascii=True, separators=(",", ":")) for event in records) + "\n"
+            ).encode("utf-8")
+            self._client.put_file(volume_file_path=file_path, contents=contents, overwrite=True)
+
+            # Minimal signal for logs without leaking credentials.
+            print(f"wrote 1 file with event batch to {self._dataset_root}/{dataset_name}/dt={ingest_date}/hour={ingest_hour}")
+
+        self._buffers.clear()
